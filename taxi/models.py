@@ -11,7 +11,7 @@ class Manufacturer(models.Model):
         ordering = ('name',)
 
     def __str__(self):
-        return f'{self.name} {self.country}'
+        return self.name
 
 
 class Driver(AbstractUser):
@@ -21,7 +21,7 @@ class Driver(AbstractUser):
         ordering = ('username',)
 
     def __str__(self):
-        return f'{self.username} license number {self.license_number}'
+        return self.username
 
 
 class Car(models.Model):
@@ -29,7 +29,7 @@ class Car(models.Model):
     manufacturer = models.ForeignKey(
         Manufacturer, related_name='cars', on_delete=models.CASCADE
     )
-    drivers = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='drivers')
+    drivers = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='cars')
 
     def __str__(self):
-        return f'{self.model} {self.manufacturer} {self.drivers}'
+        return self.model

@@ -15,6 +15,7 @@ class ManufacturerAdmin(admin.ModelAdmin):
 
 @admin.register(Driver)
 class DriverAdmin(UserAdmin):
+    list_display = ['username', 'first_name', 'last_name', 'license_number', 'email']
     fieldsets = UserAdmin.fieldsets + (
         ('Additional info', {'fields': ('license_number',)}),
     )
